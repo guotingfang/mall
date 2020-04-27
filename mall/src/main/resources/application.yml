@@ -1,0 +1,16 @@
+#数据源基本配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.232.147:3306/mall?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mappers/*.xml
+
+# 修改日志格式只是为了自己看着舒服
+logging:
+  pattern:
+    console: "[%thread] %-5level %logger{36} - %msg%n"
