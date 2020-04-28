@@ -4,11 +4,6 @@ import com.imooc.mall.pojo.Category;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-
-/**
- * Created by 廖师兄
- * 2035-01-18 18:25
- */
 //@Mapper
 public interface CategoryMapper {
 
