@@ -1,5 +1,8 @@
 package com.imooc.mall.service;
 
+import com.github.pagehelper.PageInfo;
+import com.imooc.mall.vo.ResponseVo;
+
 /**
  * Greated by Guo
  *
@@ -8,13 +11,5 @@ package com.imooc.mall.service;
 
 public interface IProductService {
 
-    /**
-     * 商品列表
-     */
-    void products();
-
-    /**
-     * 商品详情
-     */
-    void productDetails();
+   ResponseVo<PageInfo> list(Integer categoryId, Integer pageNum, Integer pageSize);
 }

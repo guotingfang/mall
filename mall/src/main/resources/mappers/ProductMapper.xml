@@ -16,7 +16,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, status, 
+    id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, status,
     create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -174,4 +174,16 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByCategoryIdSet" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mall_product
+    where status = 1
+    <if test="categoryIdSet.size() > 0">
+      and category_id in
+      <foreach collection="categoryIdSet" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
 </mapper>

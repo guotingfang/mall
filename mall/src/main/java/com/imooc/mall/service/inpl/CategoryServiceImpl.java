@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 import static com.imooc.mall.consts.MallConst.ROOT_PARENT_ID;
 
@@ -23,9 +24,11 @@ import static com.imooc.mall.consts.MallConst.ROOT_PARENT_ID;
  */
 @Service
 @Slf4j
-public class CategoryService implements ICategoryService {
+public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     private CategoryMapper categoryMapper;
+
+
 
 
     /**
@@ -52,7 +55,28 @@ public class CategoryService implements ICategoryService {
         return ResponseVo.success(categoryVoList);
     }
 
-    public void subCategoryVo( List<CategoryVo> categoryVoList, List<Category> categoryList){
+    /**
+     * 查询子类目ID
+     *
+     * @param id
+     */
+    @Override
+    public void findSubCategoryId(Integer id, Set<Integer> resultSet) {
+        List<Category> categoryList = categoryMapper.selectAll();
+       findSubCategoryId(id,resultSet,categoryList);
+    }
+
+    private void findSubCategoryId(Integer id, Set<Integer> resultSet,List<Category> categoryList) {
+        for (Category category : categoryList) {
+            if (category.getParentId().equals(id)){
+                resultSet.add(category.getId());
+                findSubCategoryId(category.getId(),resultSet,categoryList);
+            }
+
+        }
+    }
+
+    private void subCategoryVo( List<CategoryVo> categoryVoList, List<Category> categoryList){
         for (CategoryVo categoryVo : categoryVoList) {
             List<CategoryVo> subCategoryVoList = new ArrayList<>();
             for (Category category : categoryList) {
@@ -68,7 +92,7 @@ public class CategoryService implements ICategoryService {
     }
 
 
-    public CategoryVo category2CategoryVo(Category category){
+    private CategoryVo category2CategoryVo(Category category){
         CategoryVo categoryVo = new CategoryVo();
         BeanUtils.copyProperties(category,categoryVo);
         return categoryVo;

@@ -5,13 +5,16 @@ import com.imooc.mall.enums.ResponseEnum;
 import com.imooc.mall.service.ICategoryService;
 import com.imooc.mall.vo.CategoryVo;
 import com.imooc.mall.vo.ResponseVo;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
 import java.util.List;
-
-public class CategoryServiceTest extends MallApplicationTests {
+import java.util.Set;
+@Slf4j
+public class CategoryServiceImplTest extends MallApplicationTests {
 
     @Autowired
     private ICategoryService categoryService;
@@ -19,5 +22,11 @@ public class CategoryServiceTest extends MallApplicationTests {
     public void allCategories() {
         ResponseVo<List<CategoryVo>> listResponseVo = categoryService.selectAll();
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(), listResponseVo.getStatus());
+    }
+    @Test
+    public void findSubCategoryId() {
+        Set<Integer> resultSet = new HashSet<>();
+        categoryService.findSubCategoryId(100001,resultSet);
+        log.info("resultSet={}",resultSet);
     }
 }
