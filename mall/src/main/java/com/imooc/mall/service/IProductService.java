@@ -1,6 +1,7 @@
 package com.imooc.mall.service;
 
 import com.github.pagehelper.PageInfo;
+import com.imooc.mall.vo.PrdouctDetailVo;
 import com.imooc.mall.vo.ResponseVo;
 
 /**
@@ -12,4 +13,6 @@ import com.imooc.mall.vo.ResponseVo;
 public interface IProductService {
 
    ResponseVo<PageInfo> list(Integer categoryId, Integer pageNum, Integer pageSize);
+
+   ResponseVo<PrdouctDetailVo> detail(Integer productId);
 }

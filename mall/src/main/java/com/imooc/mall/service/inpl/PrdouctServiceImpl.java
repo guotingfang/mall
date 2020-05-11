@@ -6,6 +6,7 @@ import com.imooc.mall.dao.ProductMapper;
 import com.imooc.mall.pojo.Product;
 import com.imooc.mall.service.ICategoryService;
 import com.imooc.mall.service.IProductService;
+import com.imooc.mall.vo.PrdouctDetailVo;
 import com.imooc.mall.vo.PrdouctVo;
 import com.imooc.mall.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.imooc.mall.consts.MallConst.STOCK_NUM;
+import static com.imooc.mall.enums.ProductStatusEnum.DELETE;
+import static com.imooc.mall.enums.ProductStatusEnum.OFF_SALE;
+import static com.imooc.mall.enums.ResponseEnum.PRODUCT_OFF_SALE_OR_DELETE;
 
 /**
  * Greated by Guo
@@ -51,5 +57,17 @@ public class PrdouctServiceImpl implements IProductService {
         PageInfo pageInfo = new PageInfo<>(products);
         pageInfo.setList(prdouctVoList);
         return ResponseVo.success(pageInfo);
+    }
+
+    @Override
+    public ResponseVo<PrdouctDetailVo> detail(Integer productId) {
+        Product product = productMapper.selectByPrimaryKey(productId);
+        if (product.getStatus().equals(OFF_SALE.getCode()) || product.getStatus().equals(DELETE.getCode())){
+            return ResponseVo.error(PRODUCT_OFF_SALE_OR_DELETE);
+        }
+        PrdouctDetailVo prdouctDetailVo = new PrdouctDetailVo();
+        BeanUtils.copyProperties(product, prdouctDetailVo);
+        prdouctDetailVo.setStock(product.getStock() > STOCK_NUM ? STOCK_NUM : product.getStock());
+        return ResponseVo.success(prdouctDetailVo);
     }
 }

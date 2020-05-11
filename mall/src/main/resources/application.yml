@@ -20,4 +20,4 @@ logging:
     console: "[%thread] %-5level %logger{36} - %msg%n"
 
 loginterceptorconfig:
-  path: [/user/login,/user/register,/categories,/products]
+  path: [/user/login,/user/register,/categories,/products,/products/*]
