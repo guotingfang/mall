@@ -13,6 +13,7 @@ import java.util.Objects;
  * @date2020/5/6 9:03
  */
 @Data
+//排除空的字段
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ResponseVo<T> {
 

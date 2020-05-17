@@ -16,6 +16,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Autowired
     private FilterInterceptorConfig filterInterceptorConfig;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new UserLoginInterceptor())

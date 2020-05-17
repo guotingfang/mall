@@ -5,6 +5,10 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://192.168.232.148:3306/mall?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+  redis:
+    host: 192.168.232.148
+    port: 6379
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
@@ -19,5 +23,6 @@ logging:
   pattern:
     console: "[%thread] %-5level %logger{36} - %msg%n"
 
+
 loginterceptorconfig:
-  path: [/user/login,/user/register,/categories,/products,/products/*]
+  path: [/user/login,/user/register,/categories,/products,/products/*,/error]
