@@ -23,6 +23,10 @@ public enum ResponseEnum {
     PRODUCT_NOT_EXIST(13,"商品不存在"),
     PRODUCT_STOCK_ERROR(14,"库存不足"),
     CART_PRODUCT_NOT_EXIST(15,"购物车里没有该商品"),
+    ADDRESS_ADD_ERROR(16,"新建地址成功"),
+    ADDRESS_ADD_SUCCESS(17,"新建地址失败"),
+    DELETE_SHIPPING_SUCCESS(18,"删除收货地址成功"),
+    DELETE_SHIPPING_FAIL(19,"删除收货地址失败"),
     ;
 
     private Integer code;

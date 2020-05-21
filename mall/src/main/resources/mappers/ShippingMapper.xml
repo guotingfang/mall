@@ -41,7 +41,8 @@
       #{receiverZip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.imooc.mall.pojo.Shipping">
+  <insert id="insertSelective" parameterType="com.imooc.mall.pojo.Shipping" useGeneratedKeys="true" keyProperty="id">
+--     useGeneratedKeys="true" keyProperty="id"可以返回id的值
     insert into mall_shipping
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -112,20 +113,11 @@
       <if test="receiverZip != null">
         #{receiverZip,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.imooc.mall.pojo.Shipping">
     update mall_shipping
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
       <if test="receiverName != null">
         receiver_name = #{receiverName,jdbcType=VARCHAR},
       </if>
@@ -150,14 +142,9 @@
       <if test="receiverZip != null">
         receiver_zip = #{receiverZip,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+    and user_id = #{userId, jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.imooc.mall.pojo.Shipping">
     update mall_shipping
@@ -170,8 +157,26 @@
       receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
       receiver_address = #{receiverAddress,jdbcType=VARCHAR},
       receiver_zip = #{receiverZip,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <delete id="deleteByIdAndUid" parameterType="map">
+    delete from mall_shipping
+    where id = #{shippingId,jdbcType=INTEGER}
+    and user_id = #{uid,jdbcType=INTEGER}
+  </delete>
+
+  <select id="selectByIdAndUid" parameterType="map" resultType="java.lang.Integer">
+    select
+    count(1)
+    from mall_shipping
+    where id = #{shippingId, jdbcType=INTEGER}
+    and user_id = #{uid, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+   <include refid="Base_Column_List"/>
+    from mall_shipping
+    where user_id = #{uid, jdbcType=INTEGER}
+  </select>
 </mapper>
