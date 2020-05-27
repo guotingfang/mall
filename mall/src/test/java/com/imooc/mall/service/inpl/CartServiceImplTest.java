@@ -21,9 +21,9 @@ public class CartServiceImplTest extends MallApplicationTests {
     @Autowired
     private ICartService cartService;
 
-    private Integer prdouctId = 28;
+    private Integer prdouctId = 27;
 
-    private Integer uid = 2;
+    private Integer uid = 19;
 
     @Test
     public void addCart() {

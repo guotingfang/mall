@@ -27,6 +27,12 @@ public enum ResponseEnum {
     ADDRESS_ADD_SUCCESS(17,"新建地址失败"),
     DELETE_SHIPPING_SUCCESS(18,"删除收货地址成功"),
     DELETE_SHIPPING_FAIL(19,"删除收货地址失败"),
+    DEFAULT_NOT_ADDRESS(20,"没有默认使用的地址"),
+    UPDATE_STATUS_ERROR(21,"修改地址状态或删除地址失败"),
+    SHIPPING_NOT_EXIST(22,"地址不存在"),
+    CART_SELECTED_IS_EMPTY(23,"请选择商品后下单"),
+    ORDER_NOT_EXIST(24,"订单不存在"),
+    ORDER_STATUS_ERROR(25,"订单状态有误，无法被取消"),
     ;
 
     private Integer code;

@@ -12,6 +12,7 @@ public enum StatusEnum {
 
     ENABLE(1,"启用"),
     DISABLE(0,"停用"),
+    DEFAULT(2,"默认使用"),
     ;
 
     private Integer code;

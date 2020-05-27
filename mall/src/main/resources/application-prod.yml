@@ -1,0 +1,33 @@
+#数据源基本配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: gtf1991+
+    url: jdbc:mysql://rm-wz9r87e77ae76r957.mysql.rds.aliyuncs.com:3306/mall?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+#配置redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  rabbitmq:
+    addresses: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+#    控制台日志配置sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mappers/*.xml
+
+
+
+# 修改日志格式只是为了自己看着舒服
+logging:
+  pattern:
+    console: "[%thread] %-5level %logger{36} - %msg%n"
+
+
+loginterceptorconfig:
+  path: [/user/login,/user/register,/categories,/products,/products/*,/error]

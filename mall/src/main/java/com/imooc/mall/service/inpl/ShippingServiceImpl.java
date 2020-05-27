@@ -16,8 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.imooc.mall.enums.ResponseEnum.DELETE_SHIPPING_FAIL;
-import static com.imooc.mall.enums.ResponseEnum.ERROR;
+import static com.imooc.mall.enums.ResponseEnum.*;
 
 /**
  * Greated by Guo
@@ -109,4 +108,7 @@ public class ShippingServiceImpl implements IShippingService {
 
         return ResponseVo.success(pageInfo);
     }
+
+
+
 }

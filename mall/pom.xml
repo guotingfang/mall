@@ -60,6 +60,11 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+        <!--引入RabbitMQ消息队列-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
     </dependencies>
 
 
@@ -79,6 +84,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>mall</finalName>
     </build>
 
 </project>

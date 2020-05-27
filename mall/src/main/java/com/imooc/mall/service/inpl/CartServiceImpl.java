@@ -245,7 +245,7 @@ public class CartServiceImpl implements ICartService {
      * @param uid
      * @return
      */
-    private List<Cart> listForCart(Integer uid){
+    public List<Cart> listForCart(Integer uid){
         HashOperations<String, String, String> hashOperations = redisTemplate.opsForHash();
         String reidsKey = String.format(CART_REDIS_KEY_TEMPLATE, uid);
         Map<String, String> cartMap = hashOperations.entries(reidsKey);
