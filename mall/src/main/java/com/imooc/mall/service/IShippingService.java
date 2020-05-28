@@ -45,23 +45,4 @@ public interface IShippingService {
      * @return
      */
     ResponseVo<PageInfo> listShipping(Integer uid, Integer pageNum, Integer pageSize);
-
-
-
-
-//    /**
-//     * 获取默认的地址
-//     * @param uid
-//     * @return
-//     */
-//    ResponseVo<Shipping> selectByStatus(Integer uid);
-//
-//    /**
-//     * 修改地址状态 0 默认 1 启用（非默认） 2 停用（软删除）
-//     * @param uid
-//     * @param shippingId
-//     * @param status
-//     * @return
-//     */
-//    ResponseVo updateStatusByShippingId(Integer uid, Integer shippingId, Integer status);
 }

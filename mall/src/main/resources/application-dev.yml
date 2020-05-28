@@ -20,9 +20,6 @@ mybatis:
 #    控制台日志配置sql
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mappers/*.xml
-
-
-
 # 修改日志格式只是为了自己看着舒服
 logging:
   pattern:
@@ -31,5 +28,3 @@ logging:
 
 loginterceptorconfig:
   path: [/user/login,/user/register,/categories,/products,/products/*,/error]
-server:
-  port: 8081

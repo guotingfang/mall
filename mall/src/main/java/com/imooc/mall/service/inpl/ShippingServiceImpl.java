@@ -8,10 +8,12 @@ import com.imooc.mall.form.ShippingForm;
 import com.imooc.mall.pojo.Shipping;
 import com.imooc.mall.service.IShippingService;
 import com.imooc.mall.vo.ResponseVo;
+import com.imooc.mall.vo.ShippingVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,8 +106,13 @@ public class ShippingServiceImpl implements IShippingService {
     public ResponseVo<PageInfo> listShipping(Integer uid, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Shipping> shippingList = shippingMapper.selectByUserId(uid);
-        PageInfo pageInfo = new PageInfo(shippingList);
-
+        List<ShippingVo> shippingVoList = new ArrayList<>();
+        for (Shipping shipping : shippingList) {
+            ShippingVo shippingVo = new ShippingVo();
+            BeanUtils.copyProperties(shipping,shippingVo);
+            shippingVoList.add(shippingVo);
+        }
+        PageInfo pageInfo = new PageInfo(shippingVoList);
         return ResponseVo.success(pageInfo);
     }
 

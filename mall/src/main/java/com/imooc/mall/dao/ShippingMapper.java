@@ -25,7 +25,7 @@ public interface ShippingMapper {
     int selectByIdAndUid (@Param("uid") Integer uid,
                           @Param("shippingId") Integer shippingId);
 
-    List<Shipping> selectByUserId(Integer uid);
+    List<Shipping> selectByUserId(@Param("uid") Integer uid);
 
     /**
      * 获取指定的地址通过uid和shippingI

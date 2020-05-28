@@ -30,8 +30,6 @@ public class Shipping {
 
     private String receiverZip;
 
-    private Integer status;
-
     private Date createTime;
 
     private Date updateTime;

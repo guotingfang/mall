@@ -27,7 +27,11 @@ mybatis:
 logging:
   pattern:
     console: "[%thread] %-5level %logger{36} - %msg%n"
-
+  path:
 
 loginterceptorconfig:
   path: [/user/login,/user/register,/categories,/products,/products/*,/error]
+server:
+  servlet:
+    session:
+      timeout: 120

@@ -1,6 +1,8 @@
 package com.imooc.mall.service;
 
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.imooc.mall.MallApplicationTests;
 import com.imooc.mall.enums.ResponseEnum;
 import com.imooc.mall.form.ShippingForm;
@@ -20,7 +22,7 @@ public class IShippingServiceTest extends MallApplicationTests {
     private IShippingService shippingService;
 
     private Integer shippingId;
-
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
     @Before
     public void shippingAdd() {
         ShippingForm shippingForm = new ShippingForm();
@@ -57,7 +59,7 @@ public class IShippingServiceTest extends MallApplicationTests {
      @Test
     public void list() {
          ResponseVo<PageInfo> responseVo = shippingService.listShipping(19, 1, 10);
-         log.info("result={}",responseVo);
+         log.info("result={}",gson.toJson(responseVo));
         Assert.assertEquals(ResponseEnum.SUCCESS.getCode(),responseVo.getStatus());
     }
 
